@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
+import AddComment from "./AddComment";
 
 const CommentArea = ({ movieId }) => {
   const [comments, setComments] = useState([]);
   const [isCommentLoading, setIsCommentLoading] = useState(true);
+  const [addAComment, setAddAComment] = useState(false);
 
   const loadComments = () => {
     fetch("https://striveschool-api.herokuapp.com/api/comments/" + movieId, {
@@ -39,6 +41,20 @@ const CommentArea = ({ movieId }) => {
       {!isCommentLoading && (
         <Col md={6} className="text-white scrollable-div">
           <h2 className="text-center">Community Comments Area</h2>
+          <div className="d-flex align-items-center justify-content-center my-3">
+            <p className="me-2 mb-0">Want to add a comment?</p>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setAddAComment(!addAComment);
+              }}
+            >
+              {!addAComment ? "Click here" : "Close"}
+            </Button>
+          </div>
+          {addAComment && (
+            <AddComment movieId={movieId} loadComments={loadComments} />
+          )}
           {comments.length > 0 &&
             comments.map((comment) => {
               return (
