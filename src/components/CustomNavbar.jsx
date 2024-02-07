@@ -2,9 +2,12 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import logo from "../logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CustomNavbar = () => {
+  const location = useLocation().pathname;
+  console.log(location);
+
   return (
     <Navbar expand="lg" className="bg-css" data-bs-theme="dark">
       <Container fluid>
@@ -14,10 +17,18 @@ const CustomNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto fw-bold">
-            <Link className="nav-link" to="/">
+            <Link
+              className={location === "/" ? "nav-link active" : "nav-link"}
+              to="/"
+            >
               Home
             </Link>
-            <Link className="nav-link" to="/tv-shows">
+            <Link
+              className={
+                location === "tv-shows" ? "nav-link active" : "nav-link"
+              }
+              to="/tv-shows"
+            >
               TV Shows
             </Link>
             <Nav.Link href="#link">Movies</Nav.Link>
