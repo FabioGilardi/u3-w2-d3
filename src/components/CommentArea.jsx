@@ -39,7 +39,7 @@ const CommentArea = ({ movieId }) => {
   return (
     <>
       {!isCommentLoading && (
-        <Col md={6} className="text-white scrollable-div">
+        <Col md={6} className="text-white scrollable-div mt-4 mt-md-0">
           <h2 className="text-center">Community Comments Area</h2>
           <div className="d-flex align-items-center justify-content-center my-3">
             <p className="me-2 mb-0">Want to add a comment?</p>
